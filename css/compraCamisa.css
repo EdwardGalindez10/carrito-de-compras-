@@ -1,0 +1,140 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/***Inicio***/
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+}
+
+header .nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+header .nav-menu.left {
+    margin-right: auto;  /* Empuja todo lo demás a la derecha */
+}
+
+header .nav-menu.right {
+    margin-left: auto;  /* Empuja todo lo demás a la izquierda */
+}
+
+header .nav-menu li {
+    padding: 0 10px;
+}
+
+header .nav-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header .nav-logo img {
+    height: 50px;
+}
+/***Producto***/
+
+.product-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.product-images img {
+    width: 100%;
+    max-width: 300px;
+    padding: 5px;
+}
+
+.product-details {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.accordion h3 {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #eee;
+    margin-top: 0;
+}
+
+.accordion .content {
+    padding: 0 10px;
+    display: none;
+    overflow: hidden;
+}
+
+.btn {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #01151e;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #747677;
+    color: white;
+}
+
+/***Tallas***/
+.size-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.size-selector span {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.size-guide {
+    margin-left: auto;
+    text-decoration: none;
+    color: #000;
+}
+
+.sizes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sizes button {
+    width: 50px; /* Ajusta el tamaño según necesites */
+    height: 50px; /* Ajusta el tamaño según necesites */
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.sizes button:hover {
+    background-color: #f0f0f0;
+    border-color: #000;
+}
+.sizes button.selected {
+    background-color: #01151e; /* Azul, o el color que prefieras */
+    color: #fff; /* Texto en blanco para mejor contraste */
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #01151e;
+    color: white;
+}

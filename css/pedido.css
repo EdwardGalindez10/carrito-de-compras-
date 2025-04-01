@@ -1,0 +1,151 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.order-summary, .billing-address, .shipping-options {
+    width: 30%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.item-image img {
+    width: 100%;
+}
+
+.item-details p {
+    margin: 5px 0;
+}
+
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+input[type="submit"] {
+    background-color: #01151e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #01151e;
+}
+/***Inicio***/
+
+header .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+}
+
+header .nav-menu {
+    list-style: none;
+    display: flex;
+}
+
+header .nav-menu.left {
+    margin-right: auto;  /* Empuja todo lo demás a la derecha */
+}
+
+header .nav-menu.right {
+    margin-left: auto;  /* Empuja todo lo demás a la izquierda */
+}
+
+header .nav-menu li {
+    padding: 0 10px;
+}
+
+header .nav-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header .nav-logo img {
+    height: 50px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #01151e;
+    color: white;
+}
+
+/***Pago***/
+.payment-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.payment-method, .order-summary {
+    width: 48%;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.payment-method form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="email"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #01151e;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #01151e;
+}
+
+
+
+.order-summary, .billing-address, .payment-section {
+    width: 100%;
+    margin-bottom: 30px;  /* Aumenta el margen para separar los contenedores */
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Ajusta este valor según tus necesidades */
+    margin: auto;
+    padding: 20px;
+}
+

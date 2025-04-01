@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facturación</title>
+    <link rel="stylesheet" href="../css/compra.css" />
+    <link rel="stylesheet" href="../css/pedido.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="nav-logo">
+          <img src="../imagenes/logo.webp" alt="Logo de la Tienda" />
+        </div>
+        <ul class="nav-menu left">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+        <ul class="nav-menu right">
+          <div class="profile-edit">
+            <i class="fa-regular fa-user"></i> <a href="#">Editar perfil</a>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <div>
+      <h2>Generador de Factura</h2>
+
+      <div>
+        <label for="nombre">Nombre del Cliente:</label>
+        <input type="text" id="nombre" />
+      </div>
+      <div>
+        <label for="email">Email del Cliente:</label>
+        <input type="email" id="email" />
+      </div>
+      <div>
+        <label for="direccion">Dirección de Facturación:</label>
+        <input type="text" id="direccion" />
+      </div>
+
+      <table id="productos">
+        <tr>
+          <th>Descripción</th>
+          <th>Cantidad</th>
+          <th>Precio unitario</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td>Camisa</td>
+          <td id="cantidad_camisas">2</td>
+          <td>$10.00</td>
+          <td id="total_camisas">$20.00</td>
+        </tr>
+        <tr>
+          <td>Pantalón</td>
+          <td id="cantidad_pantalones">1</td>
+          <td>$20.00</td>
+          <td id="total_pantalones">$20.00</td>
+        </tr>
+      </table>
+
+      <div id="totales">
+        <p>Subtotal: <span id="subtotal">$40.00</span></p>
+        <p>Impuestos (16%): <span id="impuestos">$6.40</span></p>
+        <p>Total: <span id="total">$46.40</span></p>
+      </div>
+
+      <button class="view-product-btn" onclick="generarFactura()">
+        Generar Factura
+      </button>
+      <p></p>
+      <br />
+
+      <footer>
+        <p>© 2023 Kraken Store - Todos los derechos reservados.</p>
+      </footer>
+    </div>
+
+    <script>
+      function generarFactura() {
+        const nombre = document.getElementById("nombre").value;
+        const email = document.getElementById("email").value;
+        const direccion = document.getElementById("direccion").value;
+
+        const productos = [
+          { descripcion: "Producto 1", cantidad: 2, precio_unitario: 10.0 },
+          { descripcion: "Producto 2", cantidad: 1, precio_unitario: 20.0 },
+        ];
+
+        const subtotal = productos.reduce(
+          (total, producto) =>
+            total + producto.cantidad * producto.precio_unitario,
+          0
+        );
+        const impuestos = subtotal * 0.16;
+        const total = subtotal + impuestos;
+
+        const numeroFactura = Math.floor(Math.random() * 10000) + 1000;
+
+        // Construir la factura HTML
+        const facturaHTML = `
+            <h2>Factura</h2>
+            <p>Cliente: ${nombre}</p>
+            <p>Email: ${email}</p>
+            <p>Dirección: ${direccion}</p>
+            <table>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Total</th>
+                </tr>
+                ${productos
+                  .map(
+                    (producto) => `
+                    <tr>
+                        <td>${producto.descripcion}</td>
+                        <td>${producto.cantidad}</td>
+                        <td>$${producto.precio_unitario.toFixed(2)}</td>
+                        <td>$${(
+                          producto.cantidad * producto.precio_unitario
+                        ).toFixed(2)}</td>
+                    </tr>
+                `
+                  )
+                  .join("")}
+                <tr>
+                    <td colspan="3">Subtotal</td>
+                    <td>$${subtotal.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Impuestos (16%)</td>
+                    <td>$${impuestos.toFixed(2)}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td>$${total.toFixed(2)}</td>
+                </tr>
+            </table>
+            <p>Número de factura: ${numeroFactura}</p>
+            <p>Fecha y hora: ${new Date().toLocaleString()}</p>
+        `;
+
+        // Mostrar la factura en una ventana emergente
+        const ventanaFactura = window.open("", "_blank");
+        ventanaFactura.document.open();
+        ventanaFactura.document.write(facturaHTML);
+        ventanaFactura.document.close();
+      }
+    </script>
+
+    <script src="../js/compra.js"></script>
+  </body>
+</html>

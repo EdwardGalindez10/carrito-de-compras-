@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Consultar Inventario</title>
+        <link rel="stylesheet" href="../css/consultarinventario.css">
+        
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <img src="imagenes/logo.webp" alt="Logo de la Tienda">
+                </div>
+                <ul class="nav-menu left">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>                
+                <ul class="nav-menu right">
+                    <div class="profile-edit">
+                        <i class="fa-regular fa-user"></i> <a href="#">Editar perfil</a>
+                    </div>
+                </ul>
+            </nav>        
+        </header>
+        <h1>Consultar Inventario</h1>
+
+        <input type="text" id="searchInput"
+            placeholder="Buscar por nombre, categoría, etc."
+            onkeyup="searchFunction()">
+
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cantidad en Stock</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <div class="alert">
+            Productos con niveles de stock críticos:
+            <span id="criticalStockCount">0</span>
+        </div>
+
+        <script>
+        // Ejemplo de datos de inventario 
+        const inventoryData = [
+            { nombre: "Camisa Barocco de jacquard", descripcion: "Descripción de la camisa", stock: 50, precio: "COP 4,172,900" },
+            { nombre: "Cinturón de piel efecto cocodrilo", descripcion: "Descripción del Cinturon", stock: 5, precio: "COP 4,172,900" },
+            { nombre: "Pantalones formales de jacquard Barocco", descripcion: "Descripción del Pantalon", stock: 0, precio: "COP 4,172,900" }
+            // Agregar más datos según sea necesario
+        ];
+
+        function populateInventoryTable() {
+            const tableBody = document.querySelector('#inventoryTable tbody');
+            tableBody.innerHTML = '';
+
+            inventoryData.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.nombre}</td>
+                    <td>${product.descripcion}</td>
+                    <td>${product.stock}</td>
+                    <td>${product.precio}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Contar productos con niveles de stock críticos
+            const criticalStockCount = inventoryData.filter(product => product.stock === 0).length;
+            document.getElementById('criticalStockCount').textContent = criticalStockCount;
+        }
+
+        function searchFunction() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            const filteredData = inventoryData.filter(product =>
+                product.nombre.toLowerCase().includes(searchText) ||
+                product.descripcion.toLowerCase().includes(searchText)
+            );
+
+            const tableBody = document.querySelector('#inventoryTable tbody');
+            tableBody.innerHTML = '';
+
+            filteredData.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.nombre}</td>
+                    <td>${product.descripcion}</td>
+                    <td>${product.stock}</td>
+                    <td>${product.precio}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Llenar la tabla al cargar la página
+        window.onload = function() {
+            populateInventoryTable();
+        };
+    </script>
+     <footer>
+        <p>© 2023 Kraken Store - Todos los derechos reservados.</p>
+    </footer>
+    <script src="../js/inventario.js"></script>
+    </body>
+</html>
